@@ -1,0 +1,8 @@
+<input #inputtext type="text" placeholder="条目">
+<input type="button" value="增加" (click)="addItem(inputtext.value)">
+<ul>
+    <li *ngFor="let item of items">{{item}}</li>
+</ul>
+
+
+<custom-square l="100" c="red"></custom-square>

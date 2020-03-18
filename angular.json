@@ -1,6 +1,133 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "for-busiui": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "projects/for-busiui",
+      "sourceRoot": "projects/for-busiui/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/for-busiui",
+            "index": "projects/for-busiui/src/index.html",
+            "main": "projects/for-busiui/src/main.ts",
+            "polyfills": "projects/for-busiui/src/polyfills.ts",
+            "tsConfig": "projects/for-busiui/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/for-busiui/src/favicon.ico",
+              "projects/for-busiui/src/assets"
+            ],
+            "styles": [
+              "projects/for-busiui/src/styles.less"
+            ],
+            "scripts": [
+              "projects/for-busiui/src/assets/bundle.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/for-busiui/src/environments/environment.ts",
+                  "with": "projects/for-busiui/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "for-busiui:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "for-busiui:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "for-busiui:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/for-busiui/src/test.ts",
+            "polyfills": "projects/for-busiui/src/polyfills.ts",
+            "tsConfig": "projects/for-busiui/tsconfig.spec.json",
+            "karmaConfig": "projects/for-busiui/karma.conf.js",
+            "assets": [
+              "projects/for-busiui/src/favicon.ico",
+              "projects/for-busiui/src/assets"
+            ],
+            "styles": [
+              "projects/for-busiui/src/styles.less"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/for-busiui/tsconfig.app.json",
+              "projects/for-busiui/tsconfig.spec.json",
+              "projects/for-busiui/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/for-busiui/e2e/protractor.conf.js",
+            "devServerTarget": "for-busiui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "for-busiui:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": "e75fdd79-673f-494f-9646-7e1c3fbd063d"
+  },
+  "defaultProject": "for-busiui"
 }
